@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+
+<launch>
+
+  <!-- doc Spawns the tas_car in Gazebo and initializes controllers -->    
+ 
+  <!-- Load the bot -->
+
+  <include file="$(find robot_sim)/launch/description.launch"/>
+  
+  <!-- Load joint controller from yaml file -->
+
+  <rosparam file="$(find robot_sim)/config/gazebo_controller.yaml" command="load"/>
+
+  <!-- Spawn the car from the robot description -->
+  <node name="gazebo_model_spawner" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model tas_car -x 0 -y 0 -unpause" respawn="false" output="screen" />
+  
+  <!-- Load the controllers -->
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="tas_car" args="
+	  joint_state_controller
+	  wheel_rb_controller
+	  wheel_lb_controller"/>
+
+  <!-- Use the simulation time -->
+  <rosparam param="use_sim_time">true</rosparam>
+
+  <!-- Joint state publisher in case controller spawner not available -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"  respawn="false" output="screen"/>
+
+  <!-- Publish robot state -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" required="true" respawn="false" output="screen">
+    <remap from="/joint_states" to="/tas_car/joint_states"/>
+  </node>
+
+  <!-- node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_sim)/rviz/sim.rviz" required="true" output="screen"/ -->
+
+</launch>
+

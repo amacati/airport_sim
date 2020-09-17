@@ -1,0 +1,307 @@
+<?xml version="1.0" ?>
+
+<robot name="tas_car_macros" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+  <!-- Include constants, mesh locations etc. -->
+  <xacro:include filename="$(find robot_sim)/urdf/tas_car_properties.xacro"/>
+
+
+  <!-- Right wheel macro -->
+  <xacro:macro name="r_wheel" params="name xyz:='0 0 0' rpy:='0 0 0' mass:='0.0482' parent joint_xyz joint_rpy act_type:='continuous'">
+    <link name="${name}">
+      <visual>
+	<origin xyz="${xyz}" rpy="${rpy}"/>
+        <geometry>
+	  <mesh filename="${wheel_r_mesh}"/>
+	</geometry>
+       </visual>
+
+      <collision>
+        <geometry>
+	  <mesh filename="${wheel_r_mesh_col}"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+	<mass value="${mass}" />
+	<origin xyz="${xyz}" />
+	<inertia ixx="3.745e-7" ixy="6.657e-7" ixz="3.28e-7" iyy="3.28e-7" iyz="3.745e-7" izz="6.657e-7"/>
+      </inertial>
+    </link>
+
+    <joint name="${parent}_${name}_joint" type="${act_type}">
+      <axis xyz="0 0 1" rpy="0 0 0"/>
+      <origin xyz="${joint_xyz}" rpy="${joint_rpy}"/>
+      <parent link="${parent}"/>
+      <child link="${name}"/>
+    </joint>
+  </xacro:macro>
+
+
+  <!-- Left wheel macro -->
+  <xacro:macro name="l_wheel" params="name xyz:='0 0 0' rpy:='0 0 0' mass:='0.0482' parent joint_xyz joint_rpy act_type:='continuous'">
+    <link name="${name}">
+      <visual>
+	<origin xyz="${xyz}" rpy="${rpy}"/>
+        <geometry>
+	  <mesh filename="${wheel_l_mesh}"/>
+	</geometry>
+       </visual>
+
+      <collision>
+        <geometry>
+	  <mesh filename="${wheel_l_mesh_col}"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+	<mass value="${mass}" />
+	<origin xyz="${xyz}" />
+	<inertia ixx="3.745e-7" ixy="6.657e-7" ixz="3.28e-7" iyy="3.28e-7" iyz="3.745e-7" izz="6.657e-7"/>
+      </inertial>
+    </link>
+
+    <joint name="${parent}_${name}_joint" type="${act_type}">
+      <axis xyz="0 0 1" rpy="0 0 0"/>
+      <origin xyz="${joint_xyz}" rpy="${joint_rpy}"/>
+      <parent link="${parent}"/>
+      <child link="${name}"/>
+    </joint>
+  </xacro:macro>
+
+
+  <!-- Hokuyo laser scanner macro --> 
+  <xacro:macro name="sensor_hokuyo" params="parent name:='hokuyo1' xyz:='0.08 0 0.430' rpy:='0 0 0'">
+    <link name="${name}_link">
+      <visual>
+	<origin xyz="0 0 -0.025"/>
+	<geometry>
+	  <mesh filename="${hokuyo_mesh}"/>
+	</geometry>
+	<material name="Green"/>
+      </visual>
+      <collision>
+	<origin xyz="0 0 -0.025"/>
+	<geometry>
+	  <box size="0.05 0.05 0.07"/>
+        </geometry>
+      </collision>
+      <inertial>
+	<mass value="0.001"/>
+	<origin xyz="0 0 0"/>
+	<inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+      </inertial>
+    </link>
+
+    <gazebo reference="${name}_link">
+      <sensor type="ray" name="head_hokuyo_sensor">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>false</visualize>
+        <update_rate>40</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>720</samples>
+              <resolution>0.25</resolution>
+              <min_angle>-1.5</min_angle>
+              <max_angle>1.5</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.10</min>
+            <max>30.0</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <!-- Noise parameters based on published spec for Hokuyo laser
+                 achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+                 stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+                 reading. -->
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+        <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+          <topicName>/laserscan</topicName>
+          <frameName>${name}_link</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>	
+
+    <joint name="${name}_joint" type="fixed">
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <axis xyz="0 0 1" rpy="0 0 0"/>
+      <parent link="base"/>
+      <child link="${name}_link"/>
+    </joint>
+  </xacro:macro>
+
+
+  <!-- Gazebo transmission_block macro -->
+  <xacro:macro name="transmission_block" params="joint_name interface_type:='PositionJointInterface'">
+    <transmission name="trans_${joint_name}"> 
+      <type>transmission_interface/SimpleTransmission</type> 
+      <joint name="${joint_name}"> 
+	<hardwareInterface>hardware_interface/${interface_type}</hardwareInterface> 
+      </joint> 
+      <actuator name="${joint_name}_motor">
+	<hardwareInterface>hardware_interface/${interface_type}</hardwareInterface>	
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator> 
+    </transmission>
+  </xacro:macro>
+
+
+  <!-- IMU macro -->
+  <xacro:macro name="sensor_imu">
+    <gazebo>
+      <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+        <alwaysOn>true</alwaysOn>
+        <bodyName>base_footprint</bodyName>
+        <topicName>imu</topicName>
+        <serviceName>imu_service</serviceName>
+        <gaussianNoise>0.0</gaussianNoise>
+        <updateRate>10.0</updateRate>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name='sensor_camera'>
+    <link name="cam_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+	  <box size="0.01 0.01 0.01"/>
+	</geometry>
+      </visual>
+      <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+	  <box size="0.01 0.01 0.01"/>
+	</geometry>
+      </collision>
+      <inertial>
+        <mass value="0.2"/>
+        <inertia ixx="0.37267" ixy="0.535" ixz="0.27612" iyy="0.60173" iyz="0.37267" izz="0.5256" />
+      </inertial>
+    </link>
+
+    <joint name="base_cam_link_joint" type="fixed">
+      <axis xyz="0 0 1" rpy="0 0 0"/>
+      <origin xyz="0.2 0 0.1" rpy="0 0 0"/>
+      <parent link="base"/>
+      <child link="cam_link"/>
+    </joint>
+
+    <gazebo reference="cam_link">
+      <sensor type="camera" name="camera1">
+        <update_rate>30.0</update_rate>
+        <camera name="head">
+          <horizontal_fov>1.3962634</horizontal_fov>
+          <image>
+            <width>800</width>
+            <height>800</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.02</near>
+            <far>300</far>
+          </clip>
+          <noise>
+            <type>gaussian</type>
+	    <!-- Noise is sampled independently per pixel on each frame. 
+	         That pixel's noise value is added to each of its color 
+		 channels, which at that point lie in the range [0,1]. -->
+	    <mean>0.0</mean>
+	    <stddev>0.007</stddev>
+	  </noise>
+	</camera>
+        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+	  <alwaysOn>true</alwaysOn>
+	  <updateRate>0.0</updateRate>
+	  <cameraName>tas_car/camera1</cameraName>
+	  <imageTopicName>image_raw</imageTopicName>
+	  <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+	  <frameName>cam_link</frameName>
+	  <hackBaseline>0.07</hackBaseline>
+	  <distortionK1>0.0</distortionK1>
+	  <distortionK2>0.0</distortionK2>
+	  <distortionK3>0.0</distortionK3>
+	  <distortionT1>0.0</distortionT1>
+	  <distortionT2>0.0</distortionT2>
+	</plugin>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+
+  <!-- Car lights macro -->
+  <xacro:macro name="car_lights">
+    <gazebo reference="base">
+      <light name='led' type='spot'>
+        <pose>0.3 0.1 0.05 0 0 0</pose>
+        <attenuation>
+          <diffuse>1.0 0.0 0.0 1</diffuse>
+          <specular>1.0 0.0 0.0 1</specular>
+          <range>200</range>
+          <constant>0.1</constant>
+          <linear>0.01</linear>
+          <quadratic>0.0</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>1 0 0.3</direction>
+      </light>
+      <light name='led2' type='spot'>
+        <pose>0.3 -0.1 0.05 0 0 0</pose>
+        <attenuation>
+          <diffuse>1.0 0.0 0.0 1</diffuse>
+          <specular>1.0 0.0 0.0 1</specular>
+          <range>200</range>
+          <constant>0.1</constant>
+          <linear>0.01</linear>
+          <quadratic>0.0</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>1 0 0.3</direction>
+      </light>
+    </gazebo>
+  </xacro:macro>
+
+  <!-- hector GPS sensor -->
+  <xacro:macro name="gps">
+    <gazebo>
+      <plugin name="gps_sim" filename="libhector_gazebo_ros_gps.so">
+        <alwaysOn>1</alwaysOn>
+        <updateRate>10.0</updateRate>
+        <bodyName>base_footprint</bodyName>
+        <topicName>gps</topicName>
+        <velocityTopicName>gps_velocity</velocityTopicName>
+        <drift>5.0 5.0 5.0</drift>
+        <gaussianNoise>0.1 0.1 0.1</gaussianNoise>
+        <velocityDrift>0 0 0</velocityDrift>
+        <velocityGaussianNoise>0.1 0.1 0.1</velocityGaussianNoise>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+
+  <!-- Macro for initiallizing the ros_control plugin -->
+  <xacro:macro name="ros_control_plugin" params="ns:=''">
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+	<robotNamespace>${ns}</robotNamespace>
+       </plugin>
+    </gazebo>
+  </xacro:macro>
+
+  <!-- robot visual materials -->
+  <material name="Grey">
+    <color rgba="0.7 0.7 0.7 1.0"/>
+  </material>
+  <material name="Green">
+    <color rgba="0.0 1.0 0.0 1.0"/>
+  </material>
+  <material name="Red">
+    <color rgba="1.0 0.0 0.0 1.0"/>
+  </material>
+</robot>

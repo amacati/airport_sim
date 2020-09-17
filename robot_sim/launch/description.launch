@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<launch>
+	<!-- doc Loads the robot description file -->	
+	
+	<param name="robot_description" command="xacro --inorder '$(find robot_sim)/urdf/tas_car.urdf.xacro'"/>
+
+</launch>
+

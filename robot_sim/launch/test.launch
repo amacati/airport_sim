@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- doc Launch the empty world in Gazebo, load the car and start the whole setup for testing-->
+
+  <!-- Start the Gazebo simulation -->
+  <param name="/use_sim_time" value="true"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="verbose" value="true"/>
+  </include>
+
+  <!-- Load the car and spawn it in the simulation -->
+  <include file="$(find robot_sim)/launch/tas_car.launch"/>
+
+</launch>

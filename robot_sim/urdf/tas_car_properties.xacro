@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+
+<!-- Useful properties and constants for the car -->
+
+<robot name="xacro_properties" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <!-- math constants -->
+  <xacro:property name="PI" value="3.14159265" />
+
+  <!-- mesh infos -->
+  <xacro:property name="base_mesh" value="package://robot_sim/urdf/meshes/model_base_reduced.dae"/>
+  <xacro:property name="wheel_r_mesh" value="package://robot_sim/urdf/meshes/model_wheel_right.dae"/>
+  <xacro:property name="wheel_r_mesh_col" value="package://robot_sim/urdf/meshes/model_wheel_right_collision.dae"/>
+  <xacro:property name="wheel_l_mesh" value="package://robot_sim/urdf/meshes/model_wheel_left.dae"/>
+  <xacro:property name="wheel_l_mesh_col" value="package://robot_sim/urdf/meshes/model_wheel_left_collision.dae"/>
+  <xacro:property name="hokuyo_mesh" value="package://robot_sim/urdf/meshes/hokuyo.dae"/>
+
+</robot>
