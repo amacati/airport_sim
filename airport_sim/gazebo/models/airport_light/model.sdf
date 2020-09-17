@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="airport_light">
+    <static>true</static>	  
+    <link name='main_link'>
+      <pose>0 0 0 0 0 0</pose>
+      <light name='led' type='point'>
+        <pose>0 0 0 0 0 0</pose>
+        <attenuation>
+          <diffuse>1.0 0.0 0.0 1</diffuse>
+          <specular>1.0 0.0 0.0 1</specular>
+          <range>100</range>
+          <constant>0.1</constant>
+          <linear>0.01</linear>
+          <quadratic>0.001</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 1</direction>
+      </light>
+    </link>
+    <plugin name='light_control' filename='libFlashLightPlugin.so'>
+      <enable>true</enable>
+      <light>
+        <id>main_link/led</id>
+        <color>1 0 0</color>
+      </light>
+    </plugin>
+  </model>
+</sdf>
