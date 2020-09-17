@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<launch>
+
+	<!-- doc Launches the airport world -->
+	<param name="/use_sim_time" value="true"/>
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(find airport_gazebo)/gazebo/worlds/airport.world"/>
+		<env name="GAZEBO_MODEL_PATH" value="$(find airport_gazebo)/gazebo/models"/>
+	</include>
+
+</launch>
