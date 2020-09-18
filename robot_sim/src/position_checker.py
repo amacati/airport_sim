@@ -23,7 +23,6 @@ class PositionChecker:
         self.start_callback = True
         rospy.loginfo("Started PositionChecker.")
 
-
     def odometry_callback(self, odometry):
         if self.start_callback:
             position = np.array([odometry.pose.pose.position.x, odometry.pose.pose.position.y])
@@ -36,10 +35,8 @@ class PositionChecker:
     @jit(nopython=True, cache=True)
     def __check_lights_boost(light_positions, position, threshold, max_lights):
         light_distance = np.sqrt(np.sum((light_positions - position)**2, axis=1))
-        print(position)
-        print(light_distance)
         if np.sum(light_distance<=threshold) >= max_lights:
-            load_index = light_distance.argsort()[-max_lights:][::-1].flatten()
+            load_index = np.argsort(light_distance)[:max_lights].flatten()  # np.argpartition sadly not supported by numba.
         else:
             tmp = np.argwhere(light_distance<=threshold).flatten()
             load_index = np.ones(max_lights, dtype=np.int64) * -1  # Mark invalid indices.

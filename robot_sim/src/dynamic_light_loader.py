@@ -36,8 +36,7 @@ class DynamicLightLoader:
         rospy.spin()
 
     def checker_callback(self, light_indices):
-        print(light_indices)
-        print(self.active_lights)
+        rospy.loginfo_once("Loading initial lights. This might take a few seconds.")
         for index in light_indices:
             if not index in self.active_lights:
                 try:
@@ -54,6 +53,7 @@ class DynamicLightLoader:
                     self.active_lights.remove(index)
             except rospy.ServiceException as e:
                 rospy.loginfo(f"Light delete service failed. Error code: {e}")
+        rospy.loginfo_once("Finished loading initial lights.")
 
     def load_lights(self, positions):
         rospy.loginfo("Loading lights into the simulation.")
@@ -86,8 +86,4 @@ class DynamicLightLoader:
 
 if __name__ == '__main__':
     dynamic_loader = DynamicLightLoader(test_light_array)
-    # dynamic_loader.load_lights(test_light_array)
     dynamic_loader.start()
-    # dynamic_loader.delete_lights(test_light_array)
-    # light_controller.test_light_switch()
-
