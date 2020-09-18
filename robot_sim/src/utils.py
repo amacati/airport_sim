@@ -1,15 +1,15 @@
 import numpy as np
 
 test_light_dict = {}
-test_light_array = np.zeros((40,3))
+test_light_array = np.zeros((4,3))
 idx = 0
 
 if True:
-    for pos in np.linspace((-10, 10),(-10,-10), 20):
+    for pos in np.linspace((-10, 10),(-10,-10), 2):
         test_light_array[idx][0:2] = pos
         test_light_array[idx][2] = np.random.randint(0,3)
         idx += 1
-    for pos in np.linspace((-10, 10),(10,10), 20):
+    for pos in np.linspace((-10, 10),(10,10), 2):
         test_light_dict["airport_light"+str(idx)] = pos
         test_light_array[idx][0:2] = pos
         test_light_array[idx][2] = np.random.randint(0,3)

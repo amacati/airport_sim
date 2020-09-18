@@ -33,9 +33,11 @@ class PositionChecker:
                 callback(active_lights)
 
     @staticmethod
-    @jit(nopython=True)
+    @jit(nopython=True, cache=True)
     def __check_lights_boost(light_positions, position, threshold, max_lights):
         light_distance = np.sqrt(np.sum((light_positions - position)**2, axis=1))
+        print(position)
+        print(light_distance)
         if np.sum(light_distance<=threshold) >= max_lights:
             load_index = light_distance.argsort()[-max_lights:][::-1].flatten()
         else:

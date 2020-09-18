@@ -36,18 +36,22 @@ class DynamicLightLoader:
         rospy.spin()
 
     def checker_callback(self, light_indices):
+        print(light_indices)
+        print(self.active_lights)
         for index in light_indices:
             if not index in self.active_lights:
                 try:
                     position = Point(self.light_array[index][0], self.light_array[index][1], 0.3)
-                    self._gazebo_model_spawn_service('light'+str(index), self.light_model_xml, '', Pose(position, self._default_orientation), 'world')
-                    self.active_lights.add(index)
+                    response = self._gazebo_model_spawn_service('light'+str(index), self.light_model_xml, '', Pose(position, self._default_orientation), 'world')
+                    if response.success:
+                        self.active_lights.add(index)
                 except rospy.ServiceException as e:
                     rospy.loginfo(f"Light spawn service failed. Error code: {e}")
         for index in self.active_lights - set(light_indices):
             try:
-                self._gazebo_model_delete_service('light'+str(index))
-                self.active_lights.remove(index)
+                response = self._gazebo_model_delete_service('light'+str(index))
+                if response.success:
+                    self.active_lights.remove(index)
             except rospy.ServiceException as e:
                 rospy.loginfo(f"Light delete service failed. Error code: {e}")
 
@@ -67,6 +71,18 @@ class DynamicLightLoader:
             except rospy.ServiceException as e:
                 rospy.loginfo(f"Light delete service failed. Error code: {e}")
 
+    @property
+    def light_array(self):
+        return self._light_array
+
+    @light_array.setter
+    def light_array(self, value):
+        assert(type(value) == np.ndarray)
+        try:
+            self.position_checker.light_positions = value[:, 0:2]
+        except AttributeError:
+            pass
+        self._light_array = value
 
 if __name__ == '__main__':
     dynamic_loader = DynamicLightLoader(test_light_array)
