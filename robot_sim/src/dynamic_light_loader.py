@@ -9,8 +9,8 @@ from tf.transformations import quaternion_from_euler
 from gazebo_msgs.srv import SetLightProperties, GetLightProperties, SpawnModel, DeleteModel
 from geometry_msgs.msg import Pose, Point, Quaternion
 
-from utils import test_light_array
-from position_checker import PositionChecker
+from utils import test_light_array  # pylint: disable=import-error
+from position_checker import PositionChecker  # pylint: disable=import-error
 
 class DynamicLightLoader:
     
