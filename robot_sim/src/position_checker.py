@@ -10,7 +10,7 @@ from nav_msgs.msg import Odometry
 
 class PositionChecker:
 
-    def __init__(self, light_positions, *, distance_threshold=30, max_lights=20, callbacks=[]):
+    def __init__(self, light_positions, *, distance_threshold=100, max_lights=20, callbacks=[]):
         self.light_positions = light_positions
         self.distance_threshold = distance_threshold
         self.max_lights = max_lights

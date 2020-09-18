@@ -9,4 +9,6 @@
 	</include>
 
 	<include file="$(find robot_sim)/launch/tas_car.launch"/>
+
+	<node name="dynamic_light_loader" type="dynamic_light_loader.py" pkg="robot_sim" output="screen"/>
 </launch>

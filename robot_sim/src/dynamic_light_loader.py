@@ -19,7 +19,7 @@ class DynamicLightLoader:
         self._gazebo_model_spawn_service = rospy.ServiceProxy('/gazebo/spawn_sdf_model', SpawnModel)
         self._gazebo_model_delete_service = rospy.ServiceProxy('/gazebo/delete_model', DeleteModel)
         self.package_path = Path(__file__).resolve().parent.parent
-        self.light_model_xml = None
+        self.light_model = [None] * 3
         self._init_light_model_xml()
         self.light_array = light_array
         self.active_lights = set()
@@ -27,8 +27,12 @@ class DynamicLightLoader:
         self.position_checker = PositionChecker(light_positions=self.light_array[:, 0:2], callbacks=[self.checker_callback])
 
     def _init_light_model_xml(self):
-        with open(self.package_path.parent.joinpath('airport_sim', 'gazebo', 'models', 'airport_light', 'model.sdf'), 'r') as f:
-            self.light_model_xml = f.read()
+        with open(self.package_path.parent.joinpath('airport_sim', 'gazebo', 'models', 'red_light', 'model.sdf'), 'r') as f:
+            self.light_model[0] = f.read()
+        with open(self.package_path.parent.joinpath('airport_sim', 'gazebo', 'models', 'green_light', 'model.sdf'), 'r') as f:
+            self.light_model[1] = f.read()
+        with open(self.package_path.parent.joinpath('airport_sim', 'gazebo', 'models', 'blue_light', 'model.sdf'), 'r') as f:
+            self.light_model[2] = f.read()
 
     def start(self):
         self.position_checker.start()
@@ -41,7 +45,7 @@ class DynamicLightLoader:
             if not index in self.active_lights:
                 try:
                     position = Point(self.light_array[index][0], self.light_array[index][1], 0.3)
-                    response = self._gazebo_model_spawn_service('light'+str(index), self.light_model_xml, '', Pose(position, self._default_orientation), 'world')
+                    response = self._gazebo_model_spawn_service('light'+str(index), self.light_model[int(self.light_array[index][2])], '', Pose(position, self._default_orientation), 'world')
                     if response.success:
                         self.active_lights.add(index)
                 except rospy.ServiceException as e:
@@ -60,7 +64,7 @@ class DynamicLightLoader:
         for idx, position in enumerate(positions):
             pose = Pose(Point(x=position[0], y=position[1], z=0.3), self._default_orientation)  # 0.3 to make the light clearly visible in the sim.
             try:
-                self._gazebo_model_spawn_service('light'+str(idx), self.light_model_xml, '', pose, 'world')
+                self._gazebo_model_spawn_service('light'+str(idx), self.light_model[int(position[2])], '', pose, 'world')
             except rospy.ServiceException as e:
                 rospy.loginfo(f"Light spawn service failed. Error code: {e}")
 
@@ -83,6 +87,11 @@ class DynamicLightLoader:
         except AttributeError:
             pass
         self._light_array = value
+
+    def single_light_check(self):
+        pose = Pose(Point(x=0, y=0, z=0.3), self._default_orientation)  # 0.3 to make the light clearly visible in the sim.
+        self._gazebo_model_spawn_service('test_light', self.light_model[0], '', pose, 'world')
+
 
 if __name__ == '__main__':
     dynamic_loader = DynamicLightLoader(test_light_array)

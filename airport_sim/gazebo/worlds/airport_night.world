@@ -18,7 +18,7 @@
         <falloff>0</falloff>
       </spot>
     </light>
-    <model name='airport_plane'>
+    <model name='airport_ground_plane'>
       <static>1</static>
       <link name='link'>
         <collision name='collision'>
@@ -55,9 +55,9 @@
           </geometry>
           <material>
             <script>
-              <uri>model://airport_plane/materials/scripts</uri>
-              <uri>model://airport_plane/materials/textures/</uri>
-              <name>AirportPlane/Image</name>
+              <uri>model://airport_ground_plane/materials/scripts</uri>
+              <uri>model://airport_ground_plane/materials/textures/</uri>
+              <name>AirportGroundPlane/Image</name>
             </script>
           </material>
         </visual>
@@ -92,7 +92,7 @@
       <real_time>45 887672600</real_time>
       <wall_time>1600362645 801968900</wall_time>
       <iterations>45634</iterations>
-      <model name='airport_plane'>
+      <model name='airport_ground_plane'>
         <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>

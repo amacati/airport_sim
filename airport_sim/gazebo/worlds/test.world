@@ -1,6 +1,6 @@
 <sdf version='1.7'>
   <world name='default'>
-    <model name='airport_plane'>
+    <model name='airport_ground_plane'>
       <static>1</static>
       <link name='link'>
         <collision name='collision'>
@@ -37,9 +37,9 @@
           </geometry>
           <material>
             <script>
-              <uri>model://airport_plane/materials/scripts</uri>
-              <uri>model://airport_plane/materials/textures/</uri>
-              <name>AirportPlane/Image</name>
+              <uri>model://airport_ground_plane/materials/scripts</uri>
+              <uri>model://airport_ground_plane/materials/textures/</uri>
+              <name>AirportGroundPlane/Image</name>
             </script>
           </material>
         </visual>
@@ -84,7 +84,7 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='airport_plane'>
+      <model name='airport_ground_plane'>
         <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>

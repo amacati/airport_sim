@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="vacuum_bot">
+
+  <!-- Include constants, configs, meshes etc. -->
+ 
+  <xacro:include filename="$(find robot_sim)/urdf/tas_car_properties.xacro"/>
+
+  <xacro:include filename="$(find robot_sim)/urdf/tas_car_macros.xacro"/>
+
+  <!-- Robot creation macro -->
+
+  <xacro:macro name="tas_car">
+
+  <link name="base_footprint"/>
+
+  <link name="base">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	<mesh filename="${base_mesh}"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	      <mesh filename="${base_mesh}"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="80.0"/>
+      <inertia ixx="0.37267" ixy="0.535" ixz="0.27612" iyy="0.60173" iyz="0.37267" izz="0.5256" />
+    </inertial>
+  </link>
+
+  <joint name="footprint_base_joint" type="fixed">
+    <axis xyz="0 0 1" rpy="0 0 0"/>
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <parent link="base_footprint"/>
+    <child link="base"/>
+  </joint>
+
+  <!-- create the wheels -->
+  <xacro:r_front_wheel name="r_f_wheel" parent="base" joint_xyz="0.172 0.19189 -0.009168" joint_rpy="${PI/2} 0 0"/>
+  <xacro:l_front_wheel name="l_f_wheel" parent="base" joint_xyz="0.172 -0.19189 -0.009168" joint_rpy="${PI/2} 0 0"/>
+  <xacro:r_wheel name="r_b_wheel" parent="base" joint_xyz="-0.18673 0.19189 -0.009168" joint_rpy="${PI/2} 0 0"/>
+  <xacro:l_wheel name="l_b_wheel" parent="base" joint_xyz="-0.18673 -0.19189 -0.009168" joint_rpy="${PI/2} 0 0"/>
+
+  <!-- Create gazebo lights for the car. -->
+  <!--
+  <xacro:car_lights/>
+  -->
+
+  <!-- hokuyo laser scanners front and back. Disabled for now. -->
+  
+  <xacro:sensor_hokuyo parent="base" name="hokuyo1" xyz="0.28 0.0 0.18"/>
+  <xacro:sensor_hokuyo parent="base" name="hokuyo2" xyz="-0.28 0.0 0.1" rpy="0 0 ${PI}"/>
+
+  <!-- imu sensor on the car. Disabled for now. -->
+  <xacro:sensor_imu/>
+
+  <!-- Camera sensor. Disabled for now. -->
+  <xacro:sensor_camera/>
+
+  <!-- GPS sensor. Disabled for now. NOTE: DOES NOT WORK WITH NOETIC. NEEDS HECTOR GZ PLUGINS!
+  Using the primitive GPS emulator for now.-->
+	
+  <!--
+  <xacro:gps/>
+  -->
+
+  <!-- wheel effort transmissions for the rear wheels -->
+  <xacro:transmission_block joint_name="base_r_b_wheel_joint" interface_type="EffortJointInterface"/>
+  <xacro:transmission_block joint_name="base_l_b_wheel_joint" interface_type="EffortJointInterface"/>
+  <xacro:transmission_block joint_name="base_r_f_wheel_dummy_joint" interface_type="EffortJointInterface"/>
+  <xacro:transmission_block joint_name="base_l_f_wheel_dummy_joint" interface_type="EffortJointInterface"/>
+
+  <xacro:ros_control_plugin ns="/tas_car"/>
+
+  <!-- Gazebo ground truth position publisher -->
+  <gazebo>
+    <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>10.0</updateRate>
+      <bodyName>base</bodyName>
+      <topicName>ground_truth/odom</topicName>
+      <frameName>world</frameName>
+    </plugin>
+  </gazebo>
+
+  </xacro:macro>
+
+  <!-- Execute the car macro to create the car -->
+  <xacro:tas_car/>
+
+</robot>

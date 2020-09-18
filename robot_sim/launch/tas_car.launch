@@ -13,7 +13,7 @@
   <rosparam file="$(find robot_sim)/config/gazebo_controller.yaml" command="load"/>
 
   <!-- Spawn the car from the robot description -->
-  <node name="gazebo_model_spawner" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model tas_car -x 0 -y 0 -unpause" respawn="false" output="screen" />
+  <node name="gazebo_model_spawner" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model tas_car -x -44 -y -149 -unpause" respawn="false" output="screen" />
   
   <!-- Load the controllers -->
 
