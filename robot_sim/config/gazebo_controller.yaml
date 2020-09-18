@@ -6,11 +6,21 @@ tas_car:
 
   # Wheel Controllers      -------------------------------
   wheel_rb_controller:
-    type: effort_controllers/JointEffortController
+    type: effort_controllers/JointVelocityController
     joint: base_r_b_wheel_joint
-    pid: {p: 30.0, i: 0.5, d: 1.3}
+    pid: {p: 0.2, i: 0.01, d: 0.03}
   
   wheel_lb_controller:
-    type: effort_controllers/JointEffortController
+    type: effort_controllers/JointVelocityController
     joint: base_l_b_wheel_joint
-    pid: {p: 30.0, i: 0.5, d: 1.3}
+    pid: {p: 0.2, i: 0.01, d: 0.03}
+
+  wheel_rf_controller:
+    type: effort_controllers/JointPositionController
+    joint: base_r_f_wheel_dummy_joint
+    pid: {p: 300.0, i: 0.01, d: 0.03}
+
+  wheel_lf_controller:
+    type: effort_controllers/JointPositionController
+    joint: base_l_f_wheel_dummy_joint
+    pid: {p: 300.0, i: 0.01, d: 0.03}

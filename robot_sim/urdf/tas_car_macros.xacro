@@ -31,6 +31,7 @@
     </link>
 
     <joint name="${parent}_${name}_joint" type="${act_type}">
+      <limit effort="1000000" velocity="100"/>
       <axis xyz="0 0 1" rpy="0 0 0"/>
       <origin xyz="${joint_xyz}" rpy="${joint_rpy}"/>
       <parent link="${parent}"/>
@@ -38,6 +39,67 @@
     </joint>
   </xacro:macro>
 
+
+  <!-- Right front wheel macro. Emulates ackermann drive. -->
+  <xacro:macro name="r_front_wheel" params="name xyz:='0 0 0' rpy:='0 0 0' mass:='0.0482' parent joint_xyz joint_rpy act_type:='continuous'">
+    <link name="${name}_dummy_link">
+      <visual>
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+	  <box size="0.01 0.01 0.01"/>
+	</geometry>
+       </visual>
+
+      <collision>
+        <geometry>
+	  <box size="0.01 0.01 0.01"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+	<mass value="0.1"/>
+	<origin xyz="0 0 0" />
+	<inertia ixx="3.745e-7" ixy="6.657e-7" ixz="3.28e-7" iyy="3.28e-7" iyz="3.745e-7" izz="6.657e-7"/>
+      </inertial>
+    </link>
+
+    <joint name="${parent}_${name}_dummy_joint" type="${act_type}">
+      <limit effort="1000000" velocity="100"/>
+      <axis xyz="0 0 1" rpy="0 0 0"/>
+      <origin xyz="${joint_xyz}" rpy="0 0 0"/>
+      <parent link="${parent}"/>
+      <child link="${name}_dummy_link"/>
+    </joint>
+
+    <link name="${name}">
+      <visual>
+	<origin xyz="${xyz}" rpy="${rpy}"/>
+        <geometry>
+	  <mesh filename="${wheel_r_mesh}"/>
+	</geometry>
+       </visual>
+
+      <collision>
+        <geometry>
+	  <mesh filename="${wheel_r_mesh_col}"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+	<mass value="${mass}" />
+	<origin xyz="${xyz}" />
+	<inertia ixx="3.745e-7" ixy="6.657e-7" ixz="3.28e-7" iyy="3.28e-7" iyz="3.745e-7" izz="6.657e-7"/>
+      </inertial>
+    </link>
+
+    <joint name="${name}_dummy_${name}_joint" type="${act_type}">
+      <limit effort="1000000" velocity="100"/>
+      <axis xyz="0 0 1" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="${joint_rpy}"/>
+      <parent link="${name}_dummy_link"/>
+      <child link="${name}"/>
+    </joint>
+  </xacro:macro>
 
   <!-- Left wheel macro -->
   <xacro:macro name="l_wheel" params="name xyz:='0 0 0' rpy:='0 0 0' mass:='0.0482' parent joint_xyz joint_rpy act_type:='continuous'">
@@ -63,6 +125,7 @@
     </link>
 
     <joint name="${parent}_${name}_joint" type="${act_type}">
+      <limit effort="1000000" velocity="100"/>
       <axis xyz="0 0 1" rpy="0 0 0"/>
       <origin xyz="${joint_xyz}" rpy="${joint_rpy}"/>
       <parent link="${parent}"/>
@@ -70,6 +133,66 @@
     </joint>
   </xacro:macro>
 
+  <!-- Left front wheel macro. Emulates ackermann drive. -->
+  <xacro:macro name="l_front_wheel" params="name xyz:='0 0 0' rpy:='0 0 0' mass:='0.0482' parent joint_xyz joint_rpy act_type:='continuous'">
+    <link name="${name}_dummy_link">
+      <visual>
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+	  <box size="0.01 0.01 0.01"/>
+	</geometry>
+       </visual>
+
+      <collision>
+        <geometry>
+	  <box size="0.01 0.01 0.01"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+	<mass value="0.1"/>
+	<origin xyz="0 0 0" />
+	<inertia ixx="3.745e-7" ixy="6.657e-7" ixz="3.28e-7" iyy="3.28e-7" iyz="3.745e-7" izz="6.657e-7"/>
+      </inertial>
+    </link>
+
+    <joint name="${parent}_${name}_dummy_joint" type="${act_type}">
+      <limit effort="1000000" velocity="100"/>
+      <axis xyz="0 0 1" rpy="0 0 0"/>
+      <origin xyz="${joint_xyz}" rpy="0 0 0"/>
+      <parent link="${parent}"/>
+      <child link="${name}_dummy_link"/>
+    </joint>
+
+    <link name="${name}">
+      <visual>
+	<origin xyz="${xyz}" rpy="${rpy}"/>
+        <geometry>
+	  <mesh filename="${wheel_l_mesh}"/>
+	</geometry>
+       </visual>
+
+      <collision>
+        <geometry>
+	  <mesh filename="${wheel_l_mesh_col}"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+	<mass value="${mass}" />
+	<origin xyz="${xyz}" />
+	<inertia ixx="3.745e-7" ixy="6.657e-7" ixz="3.28e-7" iyy="3.28e-7" iyz="3.745e-7" izz="6.657e-7"/>
+      </inertial>
+    </link>
+
+    <joint name="${name}_dummy_${name}_joint" type="${act_type}">
+      <limit effort="1000000" velocity="100"/>
+      <axis xyz="0 0 1" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="${joint_rpy}"/>
+      <parent link="${name}_dummy_link"/>
+      <child link="${name}"/>
+    </joint>
+  </xacro:macro>
 
   <!-- Hokuyo laser scanner macro --> 
   <xacro:macro name="sensor_hokuyo" params="parent name:='hokuyo1' xyz:='0.08 0 0.430' rpy:='0 0 0'">
@@ -88,7 +211,7 @@
         </geometry>
       </collision>
       <inertial>
-	<mass value="0.001"/>
+	<mass value="0.01"/>
 	<origin xyz="0 0 0"/>
 	<inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
       </inertial>
@@ -131,6 +254,7 @@
     </gazebo>	
 
     <joint name="${name}_joint" type="fixed">
+      <limit effort="1000000" velocity="100"/>
       <origin xyz="${xyz}" rpy="${rpy}"/>
       <axis xyz="0 0 1" rpy="0 0 0"/>
       <parent link="base"/>

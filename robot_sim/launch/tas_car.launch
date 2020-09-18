@@ -20,7 +20,9 @@
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="tas_car" args="
 	  joint_state_controller
 	  wheel_rb_controller
-	  wheel_lb_controller"/>
+	  wheel_lb_controller
+	  wheel_rf_controller
+	  wheel_lf_controller"/>
 
   <!-- Use the simulation time -->
   <rosparam param="use_sim_time">true</rosparam>

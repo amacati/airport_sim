@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<launch>
+
+	<!-- doc Launches the model in RVIZ for developement purposes -->
+
+	<include file="$(find robot_sim)/launch/description.launch"/>
+
+	<rosparam param="use_sim_time">false</rosparam>
+
+	<node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+	<node name="robot_state_publisher" pkg ="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_sim)/rviz/devel.rviz" required="true" output="screen"/>
+	
+</launch>

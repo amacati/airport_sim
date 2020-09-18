@@ -30,7 +30,7 @@
     </collision>
 
     <inertial>
-      <mass value="2.0"/>
+      <mass value="80.0"/>
       <inertia ixx="0.37267" ixy="0.535" ixz="0.27612" iyy="0.60173" iyz="0.37267" izz="0.5256" />
     </inertial>
   </link>
@@ -43,8 +43,8 @@
   </joint>
 
   <!-- create the wheels -->
-  <xacro:r_wheel name="r_f_wheel" parent="base" joint_xyz="0.172 0.19189 -0.009168" joint_rpy="${PI/2} 0 0"/>
-  <xacro:l_wheel name="l_f_wheel" parent="base" joint_xyz="0.172 -0.19189 -0.009168" joint_rpy="${PI/2} 0 0"/>
+  <xacro:r_front_wheel name="r_f_wheel" parent="base" joint_xyz="0.172 0.19189 -0.009168" joint_rpy="${PI/2} 0 0"/>
+  <xacro:l_front_wheel name="l_f_wheel" parent="base" joint_xyz="0.172 -0.19189 -0.009168" joint_rpy="${PI/2} 0 0"/>
   <xacro:r_wheel name="r_b_wheel" parent="base" joint_xyz="-0.18673 0.19189 -0.009168" joint_rpy="${PI/2} 0 0"/>
   <xacro:l_wheel name="l_b_wheel" parent="base" joint_xyz="-0.18673 -0.19189 -0.009168" joint_rpy="${PI/2} 0 0"/>
 
@@ -76,6 +76,8 @@
   <!-- wheel effort transmissions for the rear wheels -->
   <xacro:transmission_block joint_name="base_r_b_wheel_joint" interface_type="EffortJointInterface"/>
   <xacro:transmission_block joint_name="base_l_b_wheel_joint" interface_type="EffortJointInterface"/>
+  <xacro:transmission_block joint_name="base_r_f_wheel_dummy_joint" interface_type="EffortJointInterface"/>
+  <xacro:transmission_block joint_name="base_l_f_wheel_dummy_joint" interface_type="EffortJointInterface"/>
 
   <xacro:ros_control_plugin ns="/tas_car"/>
 
