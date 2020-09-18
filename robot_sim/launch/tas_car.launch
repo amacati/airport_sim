@@ -35,7 +35,8 @@
     <remap from="/joint_states" to="/tas_car/joint_states"/>
   </node>
 
-  <!-- node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_sim)/rviz/sim.rviz" required="true" output="screen"/ -->
+  <!-- Start the GPS emulator -->
+  <node name="gps_emulator" pkg="robot_sim" type="gps_emulator.py" output="screen"/>
 
 </launch>
 

@@ -70,8 +70,12 @@
   <xacro:sensor_camera/>
   -->
 
-  <!-- GPS sensor. Disabled for now. NOTE: DOES NOT WORK WITH NOETIC. NEEDS HECTOR GZ PLUGINS!-->
+  <!-- GPS sensor. Disabled for now. NOTE: DOES NOT WORK WITH NOETIC. NEEDS HECTOR GZ PLUGINS!
+  Using the primitive GPS emulator for now.-->
+	
+  <!--
   <xacro:gps/>
+  -->
 
   <!-- wheel effort transmissions for the rear wheels -->
   <xacro:transmission_block joint_name="base_r_b_wheel_joint" interface_type="EffortJointInterface"/>

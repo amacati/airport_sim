@@ -1,0 +1,14 @@
+# Settings for the GPS emulator. Defines the gaussian noise of the GPS measurements.
+position: 
+  mean: [0.0, 0.0]  # Mean for x,y coordinates.
+  sigma: 0.02
+orientation: 
+  mean: 0.0  # Orientation only matters in z axis.
+  sigma: 0.01
+linear_velocity:
+  mean: [0.0, 0.0]
+  sigma: 0.02
+angular_velocity: 
+  mean: 0.0
+  sigma: 0.01
+
