@@ -2,7 +2,7 @@
 
 # Robot Sim package
 
-![Aarhus logo](/media/logo_small.png "Aarhus airport sim logo")
+![Aarhus logo](/media/logo_robot_sim.png "Aarhus airport sim logo")
 </div>
 
 ## Table of contents  

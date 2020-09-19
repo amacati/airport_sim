@@ -1,4 +1,9 @@
-# Airport sim package README
+<div align="center">
+
+# Airport Sim package
+
+![Aarhus logo](/media/logo_airport_sim.png "Aarhus airport sim logo")
+</div>
 
 ## Table of contents
 
