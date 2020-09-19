@@ -37,9 +37,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af207dc31c57a6ac74c007f390950b40f"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html#af207dc31c57a6ac74c007f390950b40f">__init__</a> (self, <a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html#a463be6bb17bff29a555143a4ae7523b6">light_positions</a>, *<a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html#afd158d328ffb49478769707577fa9c53">distance_threshold</a>=100, <a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html#a8fa67641dec0121ce70c37dbe5290308">max_lights</a>=20, <a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html#a839462b4b9e66dcc2c3deb879d0c2c45">callbacks</a>=[])</td></tr>
-<tr class="memdesc:af207dc31c57a6ac74c007f390950b40f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html" title="Contains all logic for distance calculation and index selection.">PositionChecker</a> constructor.  <a href="classsrc_1_1position__checker_1_1PositionChecker.html#af207dc31c57a6ac74c007f390950b40f">More...</a><br /></td></tr>
-<tr class="separator:af207dc31c57a6ac74c007f390950b40f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2717c1848162a9031704e7339cca150"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html#ab2717c1848162a9031704e7339cca150">__init__</a> (self, <a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html#a463be6bb17bff29a555143a4ae7523b6">light_positions</a>, odom_topic, *<a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html#afd158d328ffb49478769707577fa9c53">distance_threshold</a>=100, <a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html#a8fa67641dec0121ce70c37dbe5290308">max_lights</a>=20, <a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html#a839462b4b9e66dcc2c3deb879d0c2c45">callbacks</a>=[])</td></tr>
+<tr class="memdesc:ab2717c1848162a9031704e7339cca150"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html" title="Contains all logic for distance calculation and index selection.">PositionChecker</a> constructor.  <a href="classsrc_1_1position__checker_1_1PositionChecker.html#ab2717c1848162a9031704e7339cca150">More...</a><br /></td></tr>
+<tr class="separator:ab2717c1848162a9031704e7339cca150"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ec7044ab452a5856a9581dcb41a84ff"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html#a6ec7044ab452a5856a9581dcb41a84ff">start</a> (self)</td></tr>
 <tr class="memdesc:a6ec7044ab452a5856a9581dcb41a84ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the <a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html" title="Contains all logic for distance calculation and index selection.">PositionChecker</a>.  <a href="classsrc_1_1position__checker_1_1PositionChecker.html#a6ec7044ab452a5856a9581dcb41a84ff">More...</a><br /></td></tr>
 <tr class="separator:a6ec7044ab452a5856a9581dcb41a84ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -82,12 +82,12 @@ Private Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains all logic for distance calculation and index selection. </p>
-<p>The <a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html" title="Contains all logic for distance calculation and index selection.">PositionChecker</a> is triggered by the robot's ground truth position data messages. Therefore, the frequency of the <a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html" title="Contains all logic for distance calculation and index selection.">PositionChecker</a> is dependent on the topic frequency! Ground truth position data is assumed to be published under the "/ground_truth/odom" topic. </p>
+<p>The <a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html" title="Contains all logic for distance calculation and index selection.">PositionChecker</a> is triggered by the robot's ground truth position data messages. Therefore, the frequency of the <a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html" title="Contains all logic for distance calculation and index selection.">PositionChecker</a> is dependent on the topic frequency! </p>
 
 <p class="definition">Definition at line <a class="el" href="position__checker_8py_source.html#l00022">22</a> of file <a class="el" href="position__checker_8py_source.html">position_checker.py</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af207dc31c57a6ac74c007f390950b40f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af207dc31c57a6ac74c007f390950b40f">&#9670;&nbsp;</a></span>__init__()</h2>
+<a id="ab2717c1848162a9031704e7339cca150"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2717c1848162a9031704e7339cca150">&#9670;&nbsp;</a></span>__init__()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -103,6 +103,12 @@ Private Member Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>light_positions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>odom_topic</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -135,6 +141,7 @@ Private Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">light_positions</td><td>Array of light positions. Array should be of dimensions np.ndarray(x,2). The rows are x and y coordinate of the lights respectively. </td></tr>
+    <tr><td class="paramname">odom_topic</td><td>The ROS topic that the robot's odometry is published at. </td></tr>
     <tr><td class="paramname">distance_threshold</td><td>Maximum light rendering distance in meters. Default 100. </td></tr>
     <tr><td class="paramname">max_lights</td><td>Maximum amount of lights chosen at the same time. </td></tr>
     <tr><td class="paramname">callbacks</td><td>List of callbacks to execute when finishing an index selection.</td></tr>
@@ -143,7 +150,7 @@ Private Member Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>Numba compilation might take some time. For more information, see <a class="el" href="classsrc_1_1position__checker_1_1PositionChecker.html#a536d1a6747c4f13e789e63f61db2e330">__check_lights_boost</a>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="position__checker_8py_source.html#l00030">30</a> of file <a class="el" href="position__checker_8py_source.html">position_checker.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="position__checker_8py_source.html#l00029">29</a> of file <a class="el" href="position__checker_8py_source.html">position_checker.py</a>.</p>
 
 </div>
 </div>
@@ -490,7 +497,7 @@ Private Member Functions</h2></td></tr>
 <hr size="1"><div style="align: right;">
 <a href="http://wiki.ros.org/airport_sim">airport_sim</a><br />
 Author(s): Martin Schuck <martin.schuck@tum.de></br />
-<small>autogenerated on Sat Sep 19 2020 15:17:06</small>
+<small>autogenerated on Sat Sep 19 2020 15:50:50</small>
 </div>
 </body>
 </html>

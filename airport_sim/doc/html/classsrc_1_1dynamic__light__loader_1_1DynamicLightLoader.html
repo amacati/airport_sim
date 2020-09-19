@@ -25,6 +25,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classsrc_1_1dynamic__light__loader_1_1DynamicLightLoader-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -78,6 +79,12 @@ Private Member Functions</h2></td></tr>
 <tr class="memdesc:a407bc693d229b395c4055f5eda0286f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the model XMLs from their files.  <a href="classsrc_1_1dynamic__light__loader_1_1DynamicLightLoader.html#a407bc693d229b395c4055f5eda0286f4">More...</a><br /></td></tr>
 <tr class="separator:a407bc693d229b395c4055f5eda0286f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:aaa30f899061d5c15c385190885fbf465"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsrc_1_1dynamic__light__loader_1_1DynamicLightLoader.html#aaa30f899061d5c15c385190885fbf465">_read_config</a> (path)</td></tr>
+<tr class="memdesc:aaa30f899061d5c15c385190885fbf465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the config for the light loader.  <a href="classsrc_1_1dynamic__light__loader_1_1DynamicLightLoader.html#aaa30f899061d5c15c385190885fbf465">More...</a><br /></td></tr>
+<tr class="separator:aaa30f899061d5c15c385190885fbf465"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aa2938ac505be2941bd44b688259c38fb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsrc_1_1dynamic__light__loader_1_1DynamicLightLoader.html#aa2938ac505be2941bd44b688259c38fb">_default_orientation</a></td></tr>
@@ -93,7 +100,7 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><p>Contains the logic for dynamically deleting and adding lights into the simulation. </p>
 <p>The <a class="el" href="classsrc_1_1dynamic__light__loader_1_1DynamicLightLoader.html" title="Contains the logic for dynamically deleting and adding lights into the simulation.">DynamicLightLoader</a> makes use of the Gazebo SpawnModel and DeleteModel services to add and remove lights. Calculation of the closest lights and the callback trigger is outsourced to the PositionChecker module. The light models used are included in the airport_sim package. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="position__checker_8py.html">position_checker.py</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00031">31</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00032">32</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="acb33677e87c181a1b9a17268642914d9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acb33677e87c181a1b9a17268642914d9">&#9670;&nbsp;</a></span>__init__()</h2>
@@ -130,7 +137,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00039">39</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00040">40</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -179,7 +186,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section warning"><dt>Warning</dt><dd>Since the checker callback works with ROS services, working through all requests can take a significant amount of time. This is especially true on startup when all lights have to be loaded at once. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00082">82</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00110">110</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -210,7 +217,39 @@ Private Attributes</h2></td></tr>
 <p>Loads the model XMLs from their files. </p>
 <p>Models can be found at airport_sim/gazebo/models/&lt;color&gt;_light. </p>
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00060">60</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00063">63</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+
+</div>
+</div>
+<a id="aaa30f899061d5c15c385190885fbf465"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa30f899061d5c15c385190885fbf465">&#9670;&nbsp;</a></span>_read_config()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">def src.dynamic_light_loader.DynamicLightLoader._read_config </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Loads the config for the light loader. </p>
+<p>Config file is located at airport_sim/config/dynamic_load_config.yaml. If yaml file can't be scanned or is missing, reverting to defaults.</p>
+<dl class="section return"><dt>Returns</dt><dd>The ground truth odometry topic, the FoV distance threshold and the maximum number of allowed lights. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00076">76</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -251,7 +290,7 @@ Private Attributes</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>This function is supposed to be used for testing. Combine with <a class="el" href="classsrc_1_1dynamic__light__loader_1_1DynamicLightLoader.html#a457b9e4a5ab3e7ce77a8843a7378cb9b">load_lights</a>.</dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Deleting all lights in the simulation can take up to minutes, depending on the number of lights. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00139">139</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00167">167</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -275,7 +314,7 @@ Private Attributes</h2></td></tr>
 <p>Necessary because light_arrays have to be registered with the PositionChecker module.</p>
 <dl class="section return"><dt>Returns</dt><dd>The current light_array attribute. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00159">159</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00187">187</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -314,7 +353,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00169">169</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00197">197</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -355,7 +394,7 @@ Private Attributes</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>This function is supposed to be used for testing. Combine with <a class="el" href="classsrc_1_1dynamic__light__loader_1_1DynamicLightLoader.html#aaf0323fde576dcb3b184b6e36e2aaf84">delete_lights</a>.</dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Loading all lights into the simulation can take up to minutes, depending on the number of lights. Simulation performance will drastically decline! </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00115">115</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00143">143</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -378,7 +417,7 @@ Private Attributes</h2></td></tr>
 <p>Starts the dynamic loading by starting the PositionChecker. </p>
 <p>Since loading the lights is set up as a callback from the PositionChecker, the <a class="el" href="classsrc_1_1dynamic__light__loader_1_1DynamicLightLoader.html" title="Contains the logic for dynamically deleting and adding lights into the simulation.">DynamicLightLoader</a> only gets invoked once the PositionChecker gets activated. </p>
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00072">72</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00100">100</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -403,7 +442,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00056">56</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00057">57</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -427,7 +466,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00050">50</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00051">51</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -451,7 +490,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00049">49</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00050">50</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -475,7 +514,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00184">184</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00212">212</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -491,7 +530,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00055">55</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00056">56</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -507,7 +546,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00054">54</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00055">55</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -523,7 +562,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00052">52</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00053">53</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -539,7 +578,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00051">51</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00052">52</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -555,7 +594,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00057">57</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dynamic__light__loader_8py_source.html#l00059">59</a> of file <a class="el" href="dynamic__light__loader_8py_source.html">dynamic_light_loader.py</a>.</p>
 
 </div>
 </div>
@@ -568,7 +607,7 @@ Private Attributes</h2></td></tr>
 <hr size="1"><div style="align: right;">
 <a href="http://wiki.ros.org/airport_sim">airport_sim</a><br />
 Author(s): Martin Schuck <martin.schuck@tum.de></br />
-<small>autogenerated on Sat Sep 19 2020 15:17:06</small>
+<small>autogenerated on Sat Sep 19 2020 15:50:50</small>
 </div>
 </body>
 </html>
