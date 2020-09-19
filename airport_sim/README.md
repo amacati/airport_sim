@@ -22,12 +22,12 @@ This will also spawn the car into the simulation, load the dynamic light control
 ## Dynamic light loading
 To enable the simulation of all lights without the FPS performance hit, the simulation dynamically loads the lights within the robots FoV. If there are more than the maximum amount of allowed lights within drawing distance of the robot, only the closest lights are spawned to preserve simulation performance. For this method to work, the robot has to publish its ground truth data as ROS messages. The maximum number of lights, drawing distance and ground truth odometry message topic can be defined in the [dynamic light loader config file](/airport_sim/config/dynamic_light_load_config.yaml). The code for the controller as well as a more detailed description of its functionality can be found in the [src directory](/airport_sim/src/) as well as the documentation.
 <div align="center">
-
-graph TD;
-  A[Gazebo] -->|Odometry topic| B(PositionChecker);
-  B -->| Callback| C(DynamicLightLoader);
-  C -->| Spawn/Delete services| A;
-
+ ```mermaid
+graph TD
+  A[Gazebo] -->|Odometry topic| B(PositionChecker)
+  B -->| Callback| C(DynamicLightLoader)
+  C -->| Spawn/Delete services| A
+```
 Flow chart of the dynamic light loading process.
 </div>
 
