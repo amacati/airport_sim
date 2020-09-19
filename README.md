@@ -3,15 +3,21 @@
 # Aarhus airport Gazebo simulation
 
 ![Aarhus logo](/media/logo_small.png "Aarhus airport sim logo")
-
-
-
-README for the Aarhus airport simulation project. 
 </div>
 
 ## Table of contents
 
-[[_TOC_]]
+- [Aarhus airport Gazebo simulation](#aarhus-airport-gazebo-simulation)
+  * [Table of contents](#table-of-contents)
+  * [Package description](#package-description)
+  * [Installation](#installation)
+    + [Requirements](#requirements)
+    + [Installing the package](#installing-the-package)
+  * [Usage](#usage)
+  * [Repository structure](#repository-structure)
+  * [Documentation](#documentation)  
+  
+  <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 ## Package description
 
