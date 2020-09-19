@@ -36,16 +36,16 @@ You need a system with Ubuntu 20.04, ROS Noetic and Gazebo 11.0 installed. Furth
 ### Installing the package
 To install the package, clone this repository into the source folder of a catkin workspace. 
 ```console
-user@pc:~/<catkin_ws_path>/src$ git clone https://github.com/amacati/airport_sim.git
+user@pc:~/<path_to_catkin_ws>/src$ git clone https://github.com/amacati/airport_sim.git
 ```
 
 After the download completed, simply run 
 ```console
-user@pc:~/<catkin_ws_path>$ catkin_make
+user@pc:~/<path_to_catkin_ws>$ catkin_make
 ```
 from the root folder of your workspace. Don't forget to source your setup.bash afterwards.
 ```console
-user@pc:~/<catkin_ws_path>$ source devel/setup.bash
+user@pc:~/<path_to_catkin_ws>$ source devel/setup.bash
 ```
 
 ## Usage

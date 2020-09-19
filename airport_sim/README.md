@@ -2,6 +2,13 @@
 
 ## Table of contents
 
+- [Airport sim package README](#airport-sim-package-readme)
+  * [Table of contents](#table-of-contents)
+  * [Package description](#package-description)
+  * [Usage](#usage)
+  * [Dynamic light loading](#dynamic-light-loading)
+  * [Documentation](#documentation)
+
 ## Package description
 
 This package provides a Gazebo world of the Aarhus airport. Apart from just the map, the simulation is aimed at robots reacting to the airport lights. Tasks such as light maintainance and navigation on the air field can be tested in simulation before moving forward in the real world. Since the airport features >500 different light sources, the simulation can't just spawn every light source. Instead, the package comes with a dynamic light loading controller. This controller is responsible for loading lights into the sim and removing them at runtime. Configurations for the robot's position topic and FoV parameters are also exposed. The package contains a few custom Gazebo models for the airport as well as the light effects.
@@ -28,3 +35,4 @@ The package's code is documented with rosdoc_lite, which is a light weight versi
 ```console
 user@pc:~/<path_to_airport_sim>$ firefox doc/html/index.html
 ```
+You may also find it helpful to have a look into the [source code](/airport_sim/src) itself.

@@ -12,8 +12,10 @@
 
   <rosparam file="$(find robot_sim)/config/gazebo_controller.yaml" command="load"/>
 
-  <!-- Spawn the car from the robot description -->
-  <node name="gazebo_model_spawner" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model tas_car -x -44 -y -149 -unpause" respawn="false" output="screen" />
+	  <!-- Spawn the car from the robot description -->
+  <arg name="pos_x" default="0"/>
+  <arg name="pos_y" default="0"/>
+  <node name="gazebo_model_spawner" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model tas_car -x $(arg pos_x) -y $(arg pos_y) -unpause" respawn="false" output="screen" />
   
   <!-- Load the controllers -->
 
@@ -37,6 +39,7 @@
 
   <!-- Start the GPS emulator -->
   <node name="gps_emulator" pkg="robot_sim" type="gps_emulator.py" output="screen"/>
+  <node name="tas_car_controller" type="wheel_controller.py" pkg="robot_sim" output="screen"/>
 
 </launch>
 

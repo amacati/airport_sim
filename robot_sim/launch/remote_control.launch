@@ -2,10 +2,8 @@
 
 <launch>
 
-	<!-- doc Spawns the controller node responsible for translating from /cmd_vel to the controllers.. -->    
+	<!-- doc Starts a teleop node publishing to /cmd_vel. -->    
  
-  <!-- Load the controller -->
-  <node name="tas_car_controller" type="wheel_controller.py" pkg="robot_sim" output="screen"/>
   
   <!-- Start a teleop node -->
   <node name="teleop_twist_keyboard" type="teleop_twist_keyboard.py" pkg="teleop_twist_keyboard" output="screen"/>
