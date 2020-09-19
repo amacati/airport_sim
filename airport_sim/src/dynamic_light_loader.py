@@ -19,6 +19,7 @@ the lights that are no longer in the FoV.
 import numpy as np
 from pathlib import Path
 
+import yaml
 import rospy
 from tf.transformations import quaternion_from_euler
 from gazebo_msgs.srv import SetLightProperties, GetLightProperties, SpawnModel, DeleteModel
@@ -48,13 +49,15 @@ class DynamicLightLoader:
         rospy.init_node(name='DynamicLightLoader')
         self._gazebo_model_spawn_service = rospy.ServiceProxy('/gazebo/spawn_sdf_model', SpawnModel)
         self._gazebo_model_delete_service = rospy.ServiceProxy('/gazebo/delete_model', DeleteModel)
-        self.package_path = Path(__file__).resolve().parent.parent.parent
+        self.package_path = Path(__file__).resolve().parent.parent
         self.light_model = [None] * 3
         self._init_light_model_xml()
         self.light_array = light_array
         self.active_lights = set()
         self._default_orientation = Quaternion(*quaternion_from_euler(0., 0., 0.))
-        self.position_checker = PositionChecker(light_positions=self.light_array[:, 0:2],
+        odom_topic, distance_threshold, max_lights = self._read_config(self.package_path)
+        self.position_checker = PositionChecker(light_positions=self.light_array[:, 0:2], odom_topic=odom_topic,
+                                                distance_threshold=distance_threshold, max_lights=max_lights,
                                                 callbacks=[self._checker_callback])
 
     def _init_light_model_xml(self):
@@ -62,12 +65,37 @@ class DynamicLightLoader:
 
         @details Models can be found at airport_sim/gazebo/models/<color>_light.
         """
-        with open(self.package_path.joinpath('airport_sim', 'gazebo', 'models', 'red_light', 'model.sdf'), 'r') as f:
+        with open(self.package_path.joinpath('gazebo', 'models', 'red_light', 'model.sdf'), 'r') as f:
             self.light_model[0] = f.read()
-        with open(self.package_path.joinpath('airport_sim', 'gazebo', 'models', 'green_light', 'model.sdf'), 'r') as f:
+        with open(self.package_path.joinpath('gazebo', 'models', 'green_light', 'model.sdf'), 'r') as f:
             self.light_model[1] = f.read()
-        with open(self.package_path.joinpath('airport_sim', 'gazebo', 'models', 'blue_light', 'model.sdf'), 'r') as f:
+        with open(self.package_path.joinpath('gazebo', 'models', 'blue_light', 'model.sdf'), 'r') as f:
             self.light_model[2] = f.read()
+
+    @staticmethod
+    def _read_config(path):
+        """!@brief Loads the config for the light loader.
+
+        @details Config file is located at airport_sim/config/dynamic_load_config.yaml. If yaml file can't be scanned or
+        is missing, reverting to defaults.
+
+        @return The ground truth odometry topic, the FoV distance threshold and the maximum number of allowed lights.
+        """
+        config_path = path.joinpath('config', 'dynamic_light_load_config.yaml')
+        try:
+            with open(config_path, 'r') as f:
+                config = yaml.safe_load(f)
+            odom_topic = config['odom_topic']
+            distance_threshold = config['distance_threshold']
+            max_lights = config['max_lights']
+            rospy.loginfo('DynamicLightLoader config read complete.')
+        except (FileNotFoundError, yaml.scanner.ScannerError) as e:
+            rospy.logwarn('DynamicLightLoader config file missing or malformed!')
+            rospy.loginfo('Config not available, reverting to default.')
+            odom_topic = "/ground_truth/odom"
+            distance_threshold = 100
+            max_lights = 20
+        return odom_topic, distance_threshold, max_lights
 
     def start(self):
         """!@brief Starts the dynamic loading by starting the PositionChecker.

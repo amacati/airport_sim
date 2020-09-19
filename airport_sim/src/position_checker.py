@@ -23,17 +23,17 @@ class PositionChecker:
     """!@brief Contains all logic for distance calculation and index selection.
 
     @details The PositionChecker is triggered by the robot's ground truth position data messages. Therefore, the
-    frequency of the PositionChecker is dependent on the topic frequency! Ground truth position data is assumed to be
-    published under the "/ground_truth/odom" topic.
+    frequency of the PositionChecker is dependent on the topic frequency!
     """
 
-    def __init__(self, light_positions, *, distance_threshold=100, max_lights=20, callbacks=[]):
+    def __init__(self, light_positions, odom_topic, *, distance_threshold=100, max_lights=20, callbacks=[]):
         """!@brief PositionChecker constructor.
 
         @details Initializes the subscriber and callbacks. Also compiles the numba accelerated index selection function.
 
         @param light_positions Array of light positions. Array should be of dimensions np.ndarray(x,2). The rows are x
         and y coordinate of the lights respectively.
+        @param odom_topic The ROS topic that the robot's odometry is published at.
         @param distance_threshold Maximum light rendering distance in meters. Default 100.
         @param max_lights Maximum amount of lights chosen at the same time.
         @param callbacks List of callbacks to execute when finishing an index selection.
@@ -44,7 +44,7 @@ class PositionChecker:
         self.distance_threshold = distance_threshold
         self.max_lights = max_lights
         self.start_callback = False
-        self.ground_truth_subscriber = rospy.Subscriber("/ground_truth/odom", Odometry, self._odometry_callback)
+        self.ground_truth_subscriber = rospy.Subscriber(odom_topic, Odometry, self._odometry_callback)
         self.callbacks = callbacks
         self.__init_numba_jit()
 
