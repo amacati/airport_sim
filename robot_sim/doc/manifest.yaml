@@ -1,0 +1,16 @@
+actions: []
+authors: Martin Schuck <martin.schuck@tum.de>
+brief: ''
+bugtracker: ''
+depends:
+- catkin
+- teleop_twist_keyboard
+- gazebo_ros
+description: The robot_sim package
+license: BSD
+maintainers: amacati <martin.schuck@tum.de>
+msgs: []
+package_type: package
+repo_url: ''
+srvs: []
+url: ''

@@ -9,7 +9,7 @@ in the virtual field of view. If too many lights are included in the radius, the
 The module keeps track on the lights currently present in the simulation to reduce the amount of calls. It also deletes
 the lights that are no longer in the FoV.
 
-@file DynamicLightLoader class and node script.
+@file dynamic_light_loader.py DynamicLightLoader class and node script.
 
 @author Martin Schuck
 
@@ -32,8 +32,8 @@ class DynamicLightLoader:
     """!@brief Contains the logic for dynamically deleting and adding lights into the simulation.
 
     @details The DynamicLightLoader makes use of the Gazebo SpawnModel and DeleteModel services to add and remove
-    lights. Calculation of the closest lights and the callback trigger is outsourced to the PositionChecker module.
-    @see PositionChecker. The light models used are included in the airport_sim package.
+    lights. Calculation of the closest lights and the callback trigger is outsourced to the PositionChecker module. The
+    light models used are included in the airport_sim package. @see position_checker.py
     """
 
     def __init__(self, light_array):
@@ -88,7 +88,7 @@ class DynamicLightLoader:
         @param light_indices The indices of lights that are currently within the FoV. Indices describe the lights'
         position in the original light_array.
 
-        @warn Since the checker callback works with ROS services, working through all requests can take a significant
+        @warning Since the checker callback works with ROS services, working through all requests can take a significant
         amount of time. This is especially true on startup when all lights have to be loaded at once.
         """
         rospy.loginfo_once("Loading initial lights. This might take a few seconds.")
@@ -122,9 +122,9 @@ class DynamicLightLoader:
         first two rows are x and y coordinate of the lights, the third one encodes the color. 0 -> red, 1 -> green,
         2 -> blue.
 
-        @note This function is supposed to be used for testing. Combine with @see delete_lights.
+        @note This function is supposed to be used for testing. Combine with delete_lights.
 
-        @warn Loading all lights into the simulation can take up to minutes, depending on the number of lights.
+        @warning Loading all lights into the simulation can take up to minutes, depending on the number of lights.
         Simulation performance will drastically decline!
         """
         rospy.loginfo("Loading lights into the simulation.")
@@ -145,9 +145,9 @@ class DynamicLightLoader:
         first two rows are x and y coordinate of the lights, the third one encodes the color. 0 -> red, 1 -> green,
         2 -> blue.
 
-        @note This function is supposed to be used for testing. Combine with @see load_lights.
+        @note This function is supposed to be used for testing. Combine with load_lights.
 
-        @warn Deleting all lights in the simulation can take up to minutes, depending on the number of lights.
+        @warning Deleting all lights in the simulation can take up to minutes, depending on the number of lights.
         """
         for idx, _ in enumerate(light_array):
             try:

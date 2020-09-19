@@ -9,7 +9,7 @@ that other nodes on the robot receive a pseudo GPS signal to work with in their 
 can't be provided from outside, so the robot itself publishes a noisy estimation of what a GPS signal would look like on
 its current position.
 
-@file GPSEmulator class and node script.
+@file gps_emulator.py GPSEmulator class and node script.
 
 @author Martin Schuck
 
@@ -58,7 +58,7 @@ class GPSEmulator:
 
         @details The file can be found in the robot_sim/config/gps_emulator.yaml file. Edit the entries as necessary.
 
-        @warn The yaml file is not checked for correctness of data types. Please only edit existing entries.
+        @warning The yaml file is not checked for correctness of data types. Please only edit existing entries.
         """
         path = Path(__file__).resolve().parent.parent.joinpath('config', 'gps_emulator.yaml')
         try:
@@ -81,7 +81,7 @@ class GPSEmulator:
         """!@brief Callback for the ground truth subscriber.
 
         @details Adds noise to the received odometry data and republishes it. Also converts the odometry to a proper GPS
-        signal if @see _odom_to_gps_conversion is implemented.
+        signal if _odom_to_gps_conversion is implemented.
 
         @param odom ROS Odometry message from the subscriber.
         """
@@ -102,7 +102,7 @@ class GPSEmulator:
     def _odom_to_gps_conversion(odom):
         """!@brief Placeholder for the conversion to GPS.
 
-        @details Implementing the function will automatically include it in @see _odometry_callback.
+        @details Implementing the function will automatically include it in _odometry_callback.
         """
         raise NotImplementedError
 

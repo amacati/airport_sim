@@ -5,7 +5,7 @@
 @details Subscribes to the robot's ground truth position data and calculates its distance to every light in the
 simulation. Lights currently in the FoV can be passed to other modules with via callbacks.
 
-@file PositionChecker class.
+@file position_checker.py PositionChecker class.
 
 @author Martin Schuck
 
@@ -38,7 +38,7 @@ class PositionChecker:
         @param max_lights Maximum amount of lights chosen at the same time.
         @param callbacks List of callbacks to execute when finishing an index selection.
 
-        @note Numba compilation might take some time. For more information, @see __check_lights_boost.
+        @note Numba compilation might take some time. For more information, see __check_lights_boost.
         """
         self.light_positions = light_positions
         self.distance_threshold = distance_threshold
@@ -60,7 +60,7 @@ class PositionChecker:
     def _odometry_callback(self, odom):
         """!@brief Callback for the ground truth position subscriber.
 
-        @details Acts as a wrapper to @see __check_lights_boost. Extracts the position from the odometry data and calls
+        @details Acts as a wrapper to __check_lights_boost. Extracts the position from the odometry data and calls
         the compiled function. Executes all callbacks with the array of active lights indices on completion.
 
         @param odom Ground truth odometry data from the subscriber.
@@ -104,7 +104,7 @@ class PositionChecker:
     def __init_numba_jit(self):
         """!@brief Numba compile on object initialization function.
 
-        @details Calls the @see __check_lights_boost function once with dummy values to trigger numba jit compilation.
+        @details Calls the __check_lights_boost function once with dummy values to trigger numba jit compilation.
         Numba jit instead of ahead of time compilation was chosen to enable CPU architecture specific optimizations.
         """
 
