@@ -2,7 +2,7 @@
 
 @details Constructs a light array fitted for the Aarhus airport.
 
-@file utils.py Utility file for the robot_sim package.
+@file utils.py Utility file for the airport_sim package.
 
 @author Martin Schuck
 

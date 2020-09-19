@@ -28,8 +28,8 @@ class WheelController:
     @details Car parameters are hard coded. Commands are assumed to be received from the "/cmd_vel" topic. The
     controller tries to match the frequency of the velocity command topic and should be capable of > 1kHz.
 
-    @warning The controller uses a speed modifier for car speed translation. This will not match the speed command. This is
-    done for convenient car speed in the simulation. If you need exact velocity commands, please modify the
+    @warning The controller uses a speed modifier for car speed translation. This will not match the speed command. This
+    is done for convenient car speed in the simulation. If you need exact velocity commands, please modify the
     speed_modifier to match the robot's true conversion factor.
     """
     def __init__(self):

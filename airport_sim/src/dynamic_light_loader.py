@@ -122,7 +122,7 @@ class DynamicLightLoader:
         first two rows are x and y coordinate of the lights, the third one encodes the color. 0 -> red, 1 -> green,
         2 -> blue.
 
-        @note This function is supposed to be used for testing. Combine with delete_lights.
+        @note This function is supposed to be used for testing. Combine with @ref delete_lights.
 
         @warning Loading all lights into the simulation can take up to minutes, depending on the number of lights.
         Simulation performance will drastically decline!
@@ -145,7 +145,7 @@ class DynamicLightLoader:
         first two rows are x and y coordinate of the lights, the third one encodes the color. 0 -> red, 1 -> green,
         2 -> blue.
 
-        @note This function is supposed to be used for testing. Combine with load_lights.
+        @note This function is supposed to be used for testing. Combine with @ref load_lights.
 
         @warning Deleting all lights in the simulation can take up to minutes, depending on the number of lights.
         """

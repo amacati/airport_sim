@@ -81,7 +81,7 @@ class GPSEmulator:
         """!@brief Callback for the ground truth subscriber.
 
         @details Adds noise to the received odometry data and republishes it. Also converts the odometry to a proper GPS
-        signal if _odom_to_gps_conversion is implemented.
+        signal if @ref _odom_to_gps_conversion is implemented.
 
         @param odom ROS Odometry message from the subscriber.
         """
@@ -102,7 +102,9 @@ class GPSEmulator:
     def _odom_to_gps_conversion(odom):
         """!@brief Placeholder for the conversion to GPS.
 
-        @details Implementing the function will automatically include it in _odometry_callback.
+        @details Implementing the function will automatically include it in @ref _odometry_callback.
+
+        @warning Currently not implemented! Raises NotImplementedError!
         """
         raise NotImplementedError
 

@@ -108,7 +108,7 @@ $(function() {
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;!@brief Callback for the ground truth subscriber.</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="stringliteral"></span> </div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="stringliteral">        @details Adds noise to the received odometry data and republishes it. Also converts the odometry to a proper GPS</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="stringliteral">        signal if _odom_to_gps_conversion is implemented.</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="stringliteral">        signal if @ref _odom_to_gps_conversion is implemented.</span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="stringliteral"></span> </div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="stringliteral">        @param odom ROS Odometry message from the subscriber.</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
@@ -129,23 +129,25 @@ $(function() {
 <div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classsrc_1_1gps__emulator_1_1GPSEmulator.html#a19fe68df468201af8e0213a1ce53dcec">  102</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classsrc_1_1gps__emulator_1_1GPSEmulator.html#a19fe68df468201af8e0213a1ce53dcec">_odom_to_gps_conversion</a>(odom):</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;!@brief Placeholder for the conversion to GPS.</span></div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="stringliteral">        @details Implementing the function will automatically include it in _odometry_callback.</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordflow">raise</span> NotImplementedError</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="classsrc_1_1gps__emulator_1_1GPSEmulator.html#a9b14b0300f7e37735c9e7c4ea672ce01">  109</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classsrc_1_1gps__emulator_1_1GPSEmulator.html#a9b14b0300f7e37735c9e7c4ea672ce01">start</a>(self):</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;!@brief Starts the GPS emulator.</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="stringliteral">         @details Unlocks the odometry callback and keeps the node spinning.</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        rospy.loginfo(<span class="stringliteral">&#39;Started GPS emulator.&#39;</span>)</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        self.<a class="code" href="classsrc_1_1gps__emulator_1_1GPSEmulator.html#a2ae7f46ceef659da7ad3746541300966">start_callback</a> = <span class="keyword">True</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        rospy.spin()</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keywordflow">if</span> __name__ == <span class="stringliteral">&#39;__main__&#39;</span>:</div>
-<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="namespacesrc_1_1gps__emulator.html#ac83a342f816137d94724a4fceee880c8">  120</a></span>&#160;    gps_emulator = <a class="code" href="classsrc_1_1gps__emulator_1_1GPSEmulator.html">GPSEmulator</a>()</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    gps_emulator.start()</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="stringliteral">        @details Implementing the function will automatically include it in @ref _odometry_callback.</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="stringliteral">        @warning Currently not implemented! Raises NotImplementedError!</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">raise</span> NotImplementedError</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classsrc_1_1gps__emulator_1_1GPSEmulator.html#a9b14b0300f7e37735c9e7c4ea672ce01">  111</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classsrc_1_1gps__emulator_1_1GPSEmulator.html#a9b14b0300f7e37735c9e7c4ea672ce01">start</a>(self):</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;!@brief Starts the GPS emulator.</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="stringliteral">         @details Unlocks the odometry callback and keeps the node spinning.</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        rospy.loginfo(<span class="stringliteral">&#39;Started GPS emulator.&#39;</span>)</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        self.<a class="code" href="classsrc_1_1gps__emulator_1_1GPSEmulator.html#a2ae7f46ceef659da7ad3746541300966">start_callback</a> = <span class="keyword">True</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        rospy.spin()</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keywordflow">if</span> __name__ == <span class="stringliteral">&#39;__main__&#39;</span>:</div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="namespacesrc_1_1gps__emulator.html#ac83a342f816137d94724a4fceee880c8">  122</a></span>&#160;    gps_emulator = <a class="code" href="classsrc_1_1gps__emulator_1_1GPSEmulator.html">GPSEmulator</a>()</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    gps_emulator.start()</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclasssrc_1_1gps__emulator_1_1GPSEmulator_html_a3e78369d6cd4a0acad477c439ee9e2bc"><div class="ttname"><a href="classsrc_1_1gps__emulator_1_1GPSEmulator.html#a3e78369d6cd4a0acad477c439ee9e2bc">src.gps_emulator.GPSEmulator.angular_velocity_mean</a></div><div class="ttdeci">angular_velocity_mean</div><div class="ttdef"><b>Definition:</b> <a href="gps__emulator_8py_source.html#l00049">gps_emulator.py:49</a></div></div>
 <div class="ttc" id="aclasssrc_1_1gps__emulator_1_1GPSEmulator_html_a0189d7d63ef4170a9abe10dc188c2c31"><div class="ttname"><a href="classsrc_1_1gps__emulator_1_1GPSEmulator.html#a0189d7d63ef4170a9abe10dc188c2c31">src.gps_emulator.GPSEmulator.position_mean</a></div><div class="ttdeci">position_mean</div><div class="ttdef"><b>Definition:</b> <a href="gps__emulator_8py_source.html#l00043">gps_emulator.py:43</a></div></div>
@@ -161,7 +163,7 @@ $(function() {
 <div class="ttc" id="aclasssrc_1_1gps__emulator_1_1GPSEmulator_html"><div class="ttname"><a href="classsrc_1_1gps__emulator_1_1GPSEmulator.html">src.gps_emulator.GPSEmulator</a></div><div class="ttdoc">Contains the logic for GPS emulation.</div><div class="ttdef"><b>Definition:</b> <a href="gps__emulator_8py_source.html#l00028">gps_emulator.py:28</a></div></div>
 <div class="ttc" id="aclasssrc_1_1gps__emulator_1_1GPSEmulator_html_afb8d0b52a8ae90ded27eb35a8d8459bd"><div class="ttname"><a href="classsrc_1_1gps__emulator_1_1GPSEmulator.html#afb8d0b52a8ae90ded27eb35a8d8459bd">src.gps_emulator.GPSEmulator.orientation_sigma</a></div><div class="ttdeci">orientation_sigma</div><div class="ttdef"><b>Definition:</b> <a href="gps__emulator_8py_source.html#l00046">gps_emulator.py:46</a></div></div>
 <div class="ttc" id="aclasssrc_1_1gps__emulator_1_1GPSEmulator_html_a2ae7f46ceef659da7ad3746541300966"><div class="ttname"><a href="classsrc_1_1gps__emulator_1_1GPSEmulator.html#a2ae7f46ceef659da7ad3746541300966">src.gps_emulator.GPSEmulator.start_callback</a></div><div class="ttdeci">start_callback</div><div class="ttdef"><b>Definition:</b> <a href="gps__emulator_8py_source.html#l00052">gps_emulator.py:52</a></div></div>
-<div class="ttc" id="aclasssrc_1_1gps__emulator_1_1GPSEmulator_html_a9b14b0300f7e37735c9e7c4ea672ce01"><div class="ttname"><a href="classsrc_1_1gps__emulator_1_1GPSEmulator.html#a9b14b0300f7e37735c9e7c4ea672ce01">src.gps_emulator.GPSEmulator.start</a></div><div class="ttdeci">def start(self)</div><div class="ttdoc">Starts the GPS emulator.</div><div class="ttdef"><b>Definition:</b> <a href="gps__emulator_8py_source.html#l00109">gps_emulator.py:109</a></div></div>
+<div class="ttc" id="aclasssrc_1_1gps__emulator_1_1GPSEmulator_html_a9b14b0300f7e37735c9e7c4ea672ce01"><div class="ttname"><a href="classsrc_1_1gps__emulator_1_1GPSEmulator.html#a9b14b0300f7e37735c9e7c4ea672ce01">src.gps_emulator.GPSEmulator.start</a></div><div class="ttdeci">def start(self)</div><div class="ttdoc">Starts the GPS emulator.</div><div class="ttdef"><b>Definition:</b> <a href="gps__emulator_8py_source.html#l00111">gps_emulator.py:111</a></div></div>
 <div class="ttc" id="aclasssrc_1_1gps__emulator_1_1GPSEmulator_html_a0f2d52d3ae591fa00480c0a0eac6436b"><div class="ttname"><a href="classsrc_1_1gps__emulator_1_1GPSEmulator.html#a0f2d52d3ae591fa00480c0a0eac6436b">src.gps_emulator.GPSEmulator.position_sigma</a></div><div class="ttdeci">position_sigma</div><div class="ttdef"><b>Definition:</b> <a href="gps__emulator_8py_source.html#l00044">gps_emulator.py:44</a></div></div>
 <div class="ttc" id="aclasssrc_1_1gps__emulator_1_1GPSEmulator_html_a66db077e5fdfc7723b9436c09ae199d9"><div class="ttname"><a href="classsrc_1_1gps__emulator_1_1GPSEmulator.html#a66db077e5fdfc7723b9436c09ae199d9">src.gps_emulator.GPSEmulator.load_config</a></div><div class="ttdeci">def load_config(self)</div><div class="ttdoc">Loads the config file for the GPS noise.</div><div class="ttdef"><b>Definition:</b> <a href="gps__emulator_8py_source.html#l00056">gps_emulator.py:56</a></div></div>
 
@@ -169,7 +171,7 @@ $(function() {
 <hr size="1"><div style="align: right;">
 <a href="http://wiki.ros.org/robot_sim">robot_sim</a><br />
 Author(s): Martin Schuck <martin.schuck@tum.de></br />
-<small>autogenerated on Sat Sep 19 2020 14:31:49</small>
+<small>autogenerated on Sat Sep 19 2020 15:20:14</small>
 </div>
 </body>
 </html>
