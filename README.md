@@ -2,12 +2,14 @@
 
 # Aarhus airport Gazebo simulation
 
-![Aarhus logo](/media/logo.png "Aarhus airport sim logo")
+![Aarhus logo](/media/logo_small.png "Aarhus airport sim logo")
 
 
 
 README for the Aarhus airport simulation project. 
 </div>
+
+## Table of contents
 
 [[_TOC_]]
 
