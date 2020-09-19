@@ -1,6 +1,6 @@
 <div align="center">
 
-# Aarhus airport Gazebo simulation
+# Aarhus Airport Gazebo simulation
 
 ![Aarhus logo](/media/logo_small.png "Aarhus airport sim logo")
 </div>
